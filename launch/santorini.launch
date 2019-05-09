@@ -32,9 +32,7 @@
   <node name = "MCTS" pkg="mcts_action_selection" type = "skeleton_code.py" />
 
   <!-- Run rviz -->
-  <group if="$(arg use_gazebo)">
-    <node pkg="rviz" type="rviz" name="rviz" required="true"
-          args="-d $(find path_planning)/rviz/grandchallenge.rviz"/>
-  </group>
+  <node pkg="rviz" type="rviz" name="rviz" required="true"
+        args="-d $(find santorini)/rviz/grandchallenge.rviz"/>
 
 </launch>
