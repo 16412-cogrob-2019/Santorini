@@ -1,0 +1,41 @@
+<launch>
+  <arg name="use_gazebo" default="true"/>
+  <arg name="use_rviz" default="true"/>
+  <arg name="use_map_server" default="true"/>
+  <arg name="map_file" default="$(find path_planning)/map.yaml"/>
+
+  <group if="$(arg use_gazebo)">
+    <!-- Open the Gazebo Sim -->
+    <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_world.launch"/>
+    <!-- Start the Navigation Stack -->
+    <include file="$(find turtlebot3_navigation)/launch/turtlebot3_navigation.launch">
+      <arg name="open_rviz" value="false" />
+    </include>
+  </group>
+
+  <!-- Start the map server -->
+  <group if="$(arg use_map_server)">
+    <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+  </group>
+
+  <!-- Start the Mission controller node -->
+  <node name="mission_controller" pkg="mission_controller" type="mission_controller" output="screen"/>
+  <!-- Start the activity dispatcher node -->
+  <node name="activity_dispatcher" pkg="mission_controller" type="activity_dispatcher" output="screen"/>
+
+  <!-- Start the MAAS node -->
+  <node name="MAAS" pkg="maas" type="MAAS_node.py" output="screen"/>
+
+  <!-- Start the EEPP node -->
+  <node name="EEPP" pkg="path_planning" type="EEPP_node" output="screen"/>
+
+  <!-- Start the MCTS node -->
+  <node name = "MCTS" pkg="mcts_action_selection" type = "skeleton_code.py" />
+
+  <!-- Run rviz -->
+  <group if="$(arg use_rviz)">
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find path_planning)/rviz/grandchallenge.rviz"/>
+  </group>
+
+</launch>
