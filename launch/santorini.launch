@@ -1,6 +1,5 @@
 <launch>
-  <arg name="use_gazebo" default="true"/>
-  <arg name="use_rviz" default="true"/>
+  <arg name="use_gazebo" default="false"/>
   <arg name="use_map_server" default="true"/>
   <arg name="map_file" default="$(find path_planning)/map.yaml"/>
 
@@ -33,7 +32,7 @@
   <node name = "MCTS" pkg="mcts_action_selection" type = "skeleton_code.py" />
 
   <!-- Run rviz -->
-  <group if="$(arg use_rviz)">
+  <group if="$(arg use_gazebo)">
     <node pkg="rviz" type="rviz" name="rviz" required="true"
           args="-d $(find path_planning)/rviz/grandchallenge.rviz"/>
   </group>
