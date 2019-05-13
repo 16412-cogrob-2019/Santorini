@@ -34,7 +34,7 @@
   <!-- Start the EEPP node -->
   <node name="EEPP" pkg="path_planning" type="EEPP_node" output="screen"/>
   <!-- Start the MCTS node -->
-  <node name = "MCTS" pkg="mcts_action_selection" type = "skeleton_code.py"/>
+  <node name = "MCTS" pkg="mcts_action_selection" type = "skeleton_code.py" output="screen"/>
 
   <!-- Run rviz -->
   <node pkg="rviz" type="rviz" name="rviz" required="true"
