@@ -5,7 +5,7 @@
 
   <param name="namespace" value=""/>
   <param name="n_agents" value="1"/>
-  <param name="n_pois" value="5"/>
+  <param name="n_pois" value="2"/>
   <param name="n_neighbors" value="0"/>
 
 
@@ -24,9 +24,9 @@
   </group>
 
   <!-- Start the Mission controller node -->
-  <node name="mission_controller" pkg="mission_controller" type="mission_controller" output="screen"/>
+<!--   <node name="mission_controller" pkg="mission_controller" type="mission_controller" output="screen"/> -->
   <!-- Start the activity dispatcher node -->
-  <node name="activity_dispatcher" pkg="mission_controller" type="activity_dispatcher" output="screen"/>
+<!--   <node name="activity_dispatcher" pkg="mission_controller" type="activity_dispatcher" output="screen"/> -->
 
   <!-- Start the MAAS node -->
   <node name="MAAS" pkg="maas" type="MAAS_node.py" output="screen"/>
@@ -35,7 +35,7 @@
   <node name="EEPP" pkg="path_planning" type="EEPP_node" output="screen"/>
 
   <!-- Start the MCTS node -->
-  <node name = "MCTS" pkg="mcts_action_selection" type = "mcts_node.py"/>
+  <node name = "MCTS" pkg="mcts_action_selection" type = "mcts_node.py" output="screen"/>
 
   <!-- Run rviz -->
   <node pkg="rviz" type="rviz" name="rviz" required="true"
