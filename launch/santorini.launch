@@ -1,10 +1,11 @@
 <launch>
   <arg name="use_gazebo" default="false"/>
   <arg name="use_map_server" default="true"/>
-  <arg name="map_file" default="$(find path_planning)/map.yaml"/>
+  <arg name="map_file" default="$(find path_planning)/maps/gc_map2.yaml"/>
 
+  <param name="namespace" value=""/>
   <param name="n_agents" value="1"/>
-  <param name="n_pois" value="1"/>
+  <param name="n_pois" value="5"/>
   <param name="n_neighbors" value="0"/>
 
 
@@ -19,7 +20,7 @@
 
   <!-- Start the map server -->
   <group if="$(arg use_map_server)">
-    <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+    <node pkg="map_server" name = "map_server" type="map_server" args="$(arg map_file)"/>
   </group>
 
   <!-- Start the Mission controller node -->
@@ -32,7 +33,6 @@
 
   <!-- Start the EEPP node -->
   <node name="EEPP" pkg="path_planning" type="EEPP_node" output="screen"/>
-
   <!-- Start the MCTS node -->
   <node name = "MCTS" pkg="mcts_action_selection" type = "skeleton_code.py"/>
 
