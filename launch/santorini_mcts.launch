@@ -1,0 +1,16 @@
+<launch>
+  <arg name="use_gazebo" default="false"/>
+  <arg name="use_map_server" default="true"/>
+  <arg name="map_file" default="$(find path_planning)/maps/gc_map2.yaml"/>
+
+  <param name="namespace" value="tb3_2"/>
+  <param name="n_agents" value="2"/>
+  <param name="n_pois" value="9"/>
+  <param name="n_neighbors" value="0"/>
+
+
+
+  <!-- Start the MCTS node -->
+  <node name = "MCTS" pkg="mcts_action_selection" type = "mcts_node.py" output="screen"/>
+
+</launch>
